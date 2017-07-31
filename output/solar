@@ -1,0 +1,30 @@
+|CkKyf7YBeECdsCJsegiaCR|DailyPowerGeneration|kWh|日发电量|line|
+|nChTbGg39V7Hy57CFx76fe|TotalPowerGeneration|kWh|总发电量|line|
+|DZ7Sg48hBvHaUp3ubjcM2Z|TotalRunTime|h|总运行时间|num|
+|zaCFZXgXv8eLdfkL6bLLYS|InsideAirTemperature|℃|机内空气温度|line|
+|2xqRCWSB9FoBFyHxXR936g|Udc1|V|直流电压1|num|
+|wusFCQsiWfTeXMWP5wsBZ9|Idc1|A|直流电流1|num|
+|DyfiFe5JQGWADtckxnYuDa|Udc2|V|直流电压2|num|
+|8HLjcvF43UNPt6sFk4dGbD|Idc2|A|直流电流2|num|
+|96KSvHBmENUvER3htwdEcC|Pdc|W|总直流功率|num|
+|J5w47PzPFmxriwGm9Bnuf9|Uab_Ua|V|A-B 线电压/A 相电压|num|
+|Pkj8PqwhuQRxsHhMg7CcBW|Ubc_Ub|V|B-C 线电压/B 相电压|num|
+|xK7drRtnu3uXVVDngfLLpJ|Uca_Uc|V|C-A 线电压/C 相电压|num|
+|PD7nFsvxFZbyoxxSb5S7hc|Ia|A|A 相电流|num|
+|KDnA6Rr5ZFbqV8oaStnUvM|Ib|A|B 相电流|num|
+|rPESLHytQUoZsQtHdbsjZ9|Ic|A|C 相电流|num|
+|iY4B3A9nhprwgbze7XWrnY|Pac|kW|总有功功率|num|
+|KSC5sbgKZw3ScvHJBUUdqc|Qac|kVar|无功功率|num|
+|F36WfnAhRE9LUYng2aatG9|Cos|None|功率因数|num|
+|F7eJVGMwGjNyYmWPHELsNh|Frequency|Hz|电网频率|num|
+|RV7cbePpi5L2CUJwQoUr53|Xiaolv|%|逆变器效率|num|
+|keh62fwSa2xUY8k7ouSUpS|DevWorkStatus|None|设备工作状态|num|
+|x4icETDnwExHLN9e4aBztP|FaultTime_Year|None|故障告警时间：年|num|
+|qxppjNKY2qXuDejwsUMXMG|FaultTime_Month|None|故障告警时间：月|num|
+|y7ShYhhUb4C2h8CggdpLde|FaultTime_Day|None|故障告警时间：日|num|
+|Ysyv7YY3vDTNVvjSrBAFnM|FaultTime_Hour|None|故障告警时间：时|num|
+|ragBUScKu4pXFqMKjc4Lf8|FaultTime_Minute|None|故障告警时间：分|num|
+|gHdtoFve2rXeCMJ5BTFAs2|FaultTime_Second|None|故障告警时间：秒|num|
+|uribmDs8pP6b9fxvtpGWgA|FaultCode|None|故障告警码|num|
+|qaKTK4b9fyUVCuHpuXDhSQ|Qref|kvar|额定无功功率|num|
+{"DailyPowerGeneration": {"sensor_id": "CkKyf7YBeECdsCJsegiaCR", "unit": "kWh", "data_type": 0}, "TotalPowerGeneration": {"sensor_id": "nChTbGg39V7Hy57CFx76fe", "unit": "kWh", "data_type": 0}, "TotalRunTime": {"sensor_id": "DZ7Sg48hBvHaUp3ubjcM2Z", "unit": "h", "data_type": 0}, "InsideAirTemperature": {"sensor_id": "zaCFZXgXv8eLdfkL6bLLYS", "unit": "\u2103", "data_type": 0}, "Udc1": {"sensor_id": "2xqRCWSB9FoBFyHxXR936g", "unit": "V", "data_type": 0}, "Idc1": {"sensor_id": "wusFCQsiWfTeXMWP5wsBZ9", "unit": "A", "data_type": 0}, "Udc2": {"sensor_id": "DyfiFe5JQGWADtckxnYuDa", "unit": "V", "data_type": 0}, "Idc2": {"sensor_id": "8HLjcvF43UNPt6sFk4dGbD", "unit": "A", "data_type": 0}, "Pdc": {"sensor_id": "96KSvHBmENUvER3htwdEcC", "unit": "W", "data_type": 0}, "Uab_Ua": {"sensor_id": "J5w47PzPFmxriwGm9Bnuf9", "unit": "V", "data_type": 0}, "Ubc_Ub": {"sensor_id": "Pkj8PqwhuQRxsHhMg7CcBW", "unit": "V", "data_type": 0}, "Uca_Uc": {"sensor_id": "xK7drRtnu3uXVVDngfLLpJ", "unit": "V", "data_type": 0}, "Ia": {"sensor_id": "PD7nFsvxFZbyoxxSb5S7hc", "unit": "A", "data_type": 0}, "Ib": {"sensor_id": "KDnA6Rr5ZFbqV8oaStnUvM", "unit": "A", "data_type": 0}, "Ic": {"sensor_id": "rPESLHytQUoZsQtHdbsjZ9", "unit": "A", "data_type": 0}, "Pac": {"sensor_id": "iY4B3A9nhprwgbze7XWrnY", "unit": "kW", "data_type": 0}, "Qac": {"sensor_id": "KSC5sbgKZw3ScvHJBUUdqc", "unit": "kVar", "data_type": 0}, "Cos": {"sensor_id": "F36WfnAhRE9LUYng2aatG9", "unit": null, "data_type": 0}, "Frequency": {"sensor_id": "F7eJVGMwGjNyYmWPHELsNh", "unit": "Hz", "data_type": 0}, "Xiaolv": {"sensor_id": "RV7cbePpi5L2CUJwQoUr53", "unit": "%", "data_type": 0}, "DevWorkStatus": {"sensor_id": "keh62fwSa2xUY8k7ouSUpS", "unit": null, "data_type": 0}, "FaultTime_Year": {"sensor_id": "x4icETDnwExHLN9e4aBztP", "unit": null, "data_type": 0}, "FaultTime_Month": {"sensor_id": "qxppjNKY2qXuDejwsUMXMG", "unit": null, "data_type": 0}, "FaultTime_Day": {"sensor_id": "y7ShYhhUb4C2h8CggdpLde", "unit": null, "data_type": 0}, "FaultTime_Hour": {"sensor_id": "Ysyv7YY3vDTNVvjSrBAFnM", "unit": null, "data_type": 0}, "FaultTime_Minute": {"sensor_id": "ragBUScKu4pXFqMKjc4Lf8", "unit": null, "data_type": 0}, "FaultTime_Second": {"sensor_id": "gHdtoFve2rXeCMJ5BTFAs2", "unit": null, "data_type": 0}, "FaultCode": {"sensor_id": "uribmDs8pP6b9fxvtpGWgA", "unit": null, "data_type": 0}, "Qref": {"sensor_id": "qaKTK4b9fyUVCuHpuXDhSQ", "unit": "kvar", "data_type": 0}}
