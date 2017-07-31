@@ -7,6 +7,7 @@ import logging
 import gevent
 from gevent import monkey
 from pymongo import MongoClient
+from procbridge import procbridge
 from logging.config import dictConfig
 monkey.patch_all()
 import socket
@@ -52,6 +53,9 @@ logger = logging.getLogger('NanoGrid')
 
 db = MongoClient('mongodb://127.0.0.1:27017').NanoGridData
 message_queues = Queue.Queue()
+proc_service = procbridge.ProcBridge('127.0.0.1', 12345)
+
+# reply = service.request('data', {})
 
 
 def signal_handler(sig, frame):
