@@ -37,5 +37,6 @@ for _ in list(zip(*result))[1:]:
         print("|{sensor}|{name}|{unit}|{desc}|{display_type}|".format(sensor=sensor_id, name=_[0], desc=_[2], display_type=_[1], unit=_[3]))
 
 print(json.dumps(json_output))
-#print(json.dumps(dict(map(lambda _: (_[0], {'sensor_id': '', 'unit': _[3], 'data_type': 0}), filter(lambda x: x[1] != 'hide', list(zip(*result))[1:])))))
+# print(json.dumps(dict(map(lambda _: (_[0], {'sensor_id': '', 'unit': _[3], 'data_type': 0}),
+# filter(lambda x: x[1] != 'hide', list(zip(*result))[1:])))))
 

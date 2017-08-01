@@ -2,6 +2,9 @@
 
 | Sensor                 | Name                       | Unit | Desc                                     | DisplayType |
 | ---------------------- | -------------------------- | ---- | ---------------------------------------- | ----------- |
+|p9iw8dXAJquZNVtxpuaB9N|CustomPower|kW|设备功率|num|
+|NFJbmEVaNvPbd5gzn2eBKA|CustomEnergy|kWh|设备能量|num|
+|rM8Wajcqj8rjzYMtYN3ekZ|CustomHB|None|心跳信号|num|
 | k4bGXv6x8E27v64FLx7wmM | CB06_CloseStatus           | None | CB06常闭节点                                 | num         |
 | eJMeQNVbboUdn4juuvFMiH | CB06_OpenStatus            | None | CB06常开节点                                 | num         |
 | C3wKXnkcRPnWMpPzBbWVM9 | PCS11_UAB                  | None | PCS11_UAB                                | line        |

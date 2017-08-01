@@ -2,6 +2,9 @@
 
 | Sensor                 | Name               | Unit  | Desc      | DisplayType |
 | ---------------------- | ------------------ | ----- | --------- | ----------- |
+|u7W7Af5uBGo5mXp4twBrw5|CustomPower|kW|设备功率|num|
+|jmP8LTAzgaFVaLhEFzyxkN|CustomEnergy|kWh|设备能量|num|
+|R9DodFhJACnxFHjt3w8jC5|CustomHB|None|心跳信号|num|
 |2D6XJ7EjRwg8KqPgAiZMVf|WorkMode|None|工作模式|num|
 |hFy7K6aca7voqZXGQurLbH|ElectriccookerTemp|℃|电炉温度|line|
 |7SAp7JunCrcHNVWotgyPZA|H2_Density|%|氢气浓度|line|

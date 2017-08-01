@@ -2,6 +2,9 @@
 
 | Sensor                 | Name                 | Unit | Desc          | DisplayType |
 | ---------------------- | -------------------- | ---- | ------------- | ----------- |
+|qjREmJ7iFngZUu4vKu6nCF|CustomPower|kW|设备功率|num|
+|RPNv8N3vyFKdFoYDkuxxMU|CustomEnergy|kWh|设备能量|num|
+|28DfY4Q5RAHkk5wm5GsZfP|CustomHB|None|心跳信号|num|
 |CkKyf7YBeECdsCJsegiaCR|DailyPowerGeneration|kWh|日发电量|line|
 |nChTbGg39V7Hy57CFx76fe|TotalPowerGeneration|kWh|总发电量|line|
 |DZ7Sg48hBvHaUp3ubjcM2Z|TotalRunTime|h|总运行时间|num|

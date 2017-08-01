@@ -1,7 +1,11 @@
 import sys
 import json
 import time
-import Queue
+try:
+    import Queue
+except ImportError:
+    import queue as Queue
+
 import signal
 import logging
 import gevent
@@ -53,7 +57,8 @@ logger = logging.getLogger('NanoGrid')
 
 db = MongoClient('mongodb://127.0.0.1:27017').NanoGridData
 message_queues = Queue.Queue()
-proc_service = procbridge.ProcBridge('127.0.0.1', 12345)
+data_queue = Queue.Queue()
+proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
 
 # reply = service.request('data', {})
 
@@ -153,6 +158,13 @@ def recv_device_data():
     fd_to_socket = {}
     log_count = {}
 
+    with open('sensor_map.json') as f:
+        try:
+            sensor_map = json.loads(f.read())
+        except ValueError as e:
+            logger.error('sensor_map load failed: %s', e.message)
+            return
+
     server_list = map(gen_udp_socket, MCAST_PORT_LIST)
     for _ in server_list:
         udp_poller.register(_, READ_WRITE)
@@ -175,7 +187,7 @@ def recv_device_data():
                     continue
 
                 try:
-                    data = json.loads(d)
+                    data = json.loads(d.decode('utf-8'))
                 except ValueError as e:
                     logger.error(e)
                     logger.error(d)
@@ -195,6 +207,22 @@ def recv_device_data():
                     log_count[dev_id] = log_count.get(dev_id, 0) + 1
                 db.nano_grid.insert_one(data)
 
+                data_list = list(map(lambda x: {
+                    'sensor_id': sensor_map.get(dev_id, {}).get(x[0], {}).get('sensor_id'),
+                    'data_type': sensor_map.get(dev_id, {}).get(x[0], {}).get('data_type', -1),
+                    'timestamp': int(time.time() * 1000),
+                    'payload': x[1],
+                    'tmp': x[0]
+                }, data.get('runData', {}).items()))
+                # try:
+                data_queue.put(data_list)
+                # reply = proc_service.request('data', {'data': data_list})
+                # logger.info(reply)
+                # except Exception as e:
+                #     logger.info(e)
+                #     logger.info(e.args)
+                #     logger.error(str(e))
+                #     gevent.sleep(1)
             if flag & select.POLLOUT:
                 try:
                     msg = message_queues.get_nowait()
@@ -217,7 +245,25 @@ def recv_device_data():
                 logger.info('POLLHUP')
             elif flag & select.POLLERR:
                 logger.info('POLLERR')
+        gevent.sleep(0.2)
 
+
+def upload_data_to_cloud():
+    while True:
+        try:
+            msg = data_queue.get(timeout=3)
+        except Queue.Empty:
+            continue
+        try:
+            reply = proc_service.request('data', {'data': msg})
+        except Exception as e:
+            logger.info(msg)
+            logger.error('proc_service error: %s', e)
+            gevent.sleep(0.5)
 
 if __name__ == '__main__':
-    gevent.joinall([gevent.spawn(cmd_server), gevent.spawn(recv_device_data)])
+    gevent.joinall([
+        gevent.spawn(cmd_server),
+        gevent.spawn(recv_device_data),
+        gevent.spawn(upload_data_to_cloud)
+    ])

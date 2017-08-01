@@ -2,6 +2,9 @@
 
 | Sensor                 | Name                     | Unit | Desc          | DisplayType |
 | ---------------------- | ------------------------ | ---- | ------------- | ----------- |
+|R2AyoZAY2taJNL55qbuVvR|CustomPower|kW|设备功率|num|
+|YinReD6r8Ud2akRHXRWhFJ|CustomEnergy|kWh|设备能量|num|
+|a3yGRZbJBYzzka5uP7zDPK|CustomHB|None|心跳信号|num|
 |jQhKddPKmrdm5RVfhiWkih|SysRatedModuleNum|NA|系统模块数|num|
 |TTGcB7xgLQM2ekL2fzwDFX|AvailableSysModuleNum|NA|可用系统模块|num|
 |9saGRsDAm4MaaUMnxn52KQ|SysRatedPower|kVA|系统额定功率|num|

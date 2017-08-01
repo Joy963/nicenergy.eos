@@ -1,5 +1,4 @@
 import json
-from contextlib import nested
 
 
 def get_unit_map():
@@ -8,6 +7,7 @@ def get_unit_map():
             unit_map = json.loads(f.read())
         except ValueError as e:
             print(e)
+            return {}
     return unit_map
 
 
@@ -22,15 +22,16 @@ def get_data_type(unit_map, unit):
 
 def conv_sensor_map():
     unit_map = get_unit_map()
-    with nested(open('../sensor_map_first.json'), open('../sensor_map.json', 'a+')) as (f_r, f_w):
+    with open('../sensor_map_first.json') as f_r, open('../sensor_map.json', 'a+') as f_w:
         try:
             sensor_map = json.loads(f_r.read())
         except ValueError as e:
             print(e)
+            return
 
         output = {}
         for _, __ in sensor_map.items():
-            print _
+            print(_)
             tmp = {}
             for k, v in __.items():
                 unit = v.get('unit')

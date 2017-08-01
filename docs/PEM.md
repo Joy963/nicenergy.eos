@@ -2,6 +2,9 @@
 
 | Sensor                 | Name                 | Unit | Desc                | DisplayType |
 | ---------------------- | -------------------- | ---- | ------------------- | ----------- |
+|wXDmoATk2pNAkbRyK4FkjN|CustomPower|kW|设备功率|num|
+|YgTvJeFZRiNtc57hbTeu7B|CustomEnergy|kWh|设备能量|num|
+|hai7MzGqXMHkyjYbDqQVbE|CustomHB|None|心跳信号|num|
 |cSQXFSMJxAKBxfCdM6QEwe|cecu_status|None|CECU状态机|num|
 |ZTzC6tNPxtZPzSjJoAbmXQ|N2short_finishflag|None|N2短时间吹扫完成标志|num|
 |o7vxkWVp5r9vqz7PqSuwQe|N2long_finishflag|None|N2长时间吹扫完成标志|num|

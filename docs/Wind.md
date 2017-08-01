@@ -2,6 +2,9 @@
 
 | Sensor                 | Name              | Unit  | Desc   | DisplayType |
 | ---------------------- | ----------------- | ----- | ------ | ----------- |
+|DBDFmPPVRpzJ8VL8BSyUUH|CustomPower|kW|设备功率|num|
+|e7KgHtVR9zn4TABs4iCmMU|CustomEnergy|kWh|设备能量|num|
+|JzUhyLSNLS7zCygCPU63E7|CustomHB|None|心跳信号|num|
 |Gr2rLuTQhVP6TYWHisaTHL|m1_runfrequency|Hz|运行频率|num|
 |DUWVoWzP3HAuRnsfb5s96V|m1_setfreq|None|设定频率|num|
 |bYsnC5E3CGLXuGXaQ6S5eL|m1_busbar_voltage|V|母线电压|line|

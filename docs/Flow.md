@@ -2,6 +2,9 @@
 
 | Sensor                 | Name                     | Unit | Desc     | DisplayType |
 | ---------------------- | ------------------------ | ---- | -------- | ----------- |
+|qq95tY9SvshpA4TrFGVBVc|CustomPower|kW|设备功率|num|
+|PUAH2PHRnmWu474HmbdgLD|CustomEnergy|kWh|设备能量|num|
+|3xJ26YYCcuUYnhrJvuMLJB|CustomHB|None|心跳信号|num|
 |a2um4xwQasYNbogdZaKfYW|warningbit_tempHigh+|None|正极电解液温度高|num|
 |doSqUHMofzi5U38AQJdKBP|warningbit_tempLow+|None|正极电解液温度低|num|
 |LJZUMMe74tE82ESAdoTzjK|warningbit_tempHigh-|None|负极电解液温度高|num|
