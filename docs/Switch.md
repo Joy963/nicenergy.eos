@@ -1,4 +1,4 @@
-#Switch: wGPWpxE3gBCsaE2KoHodGn
+# Switch: wGPWpxE3gBCsaE2KoHodGn
 
 | Sensor                 | Name      | Unit | Desc                | DisplayType |
 | ---------------------- | --------- | ---- | ------------------- | ----------- |

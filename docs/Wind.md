@@ -1,4 +1,4 @@
-#Wind: SFeC9mj8q45mKjF7HdFg34
+# Wind: SFeC9mj8q45mKjF7HdFg34
 
 | Sensor                 | Name              | Unit  | Desc   | DisplayType |
 | ---------------------- | ----------------- | ----- | ------ | ----------- |
