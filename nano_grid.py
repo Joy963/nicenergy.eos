@@ -281,7 +281,7 @@ def upload_data_to_cloud():
         if log_count[dev_id] >= 60:
             logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
                         address, port, dev_id, len(data_list), r)
-            log_count[dev_id] += 1
+        log_count[dev_id] += 1
 
 
 if __name__ == '__main__':
