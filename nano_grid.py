@@ -221,8 +221,8 @@ def recv_device_data():
                     'payload': x[1]
                 }, data.get('runData', {}).items()))
 
-                token = device_token_map.get(dev_id.upper(), {}).get('token')
-                logger.info(dev_id, token)
+                token = device_token_map.get(dev_id.upper(), {}).get('token', '')
+                logger.info("%s: %s", dev_id, token)
                 r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
                 logger.info(r)
             if flag & select.POLLOUT:
