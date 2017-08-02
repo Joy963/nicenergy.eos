@@ -1,0 +1,16 @@
+{
+  "PEM": {"device_id": "62UXfow4rw95RUga3xjzvg", "token": "ce906460-1620-4ac0-a2ad-fb9e264fb935:oxYYhd5J9kfjZ92pVywHth:62UXfow4rw95RUga3xjzvg:1501145022036"},
+  "FR": {"device_id": "c88TkQxBn3qPbQwN2fUoKm", "token": "f12738a6-cea0-477a-b330-cf8cf2b4e9fa:oxYYhd5J9kfjZ92pVywHth:c88TkQxBn3qPbQwN2fUoKm:1501145802146"},
+  "HMI": {"device_id": "D3eNJiXb4irfNzUofTFbJb", "token": "45965aa8-3376-487f-a5cd-b58d75af1700:oxYYhd5J9kfjZ92pVywHth:D3eNJiXb4irfNzUofTFbJb:1501145643368"},
+  "BATA": {"device_id": "SGNH7o4zH4m4rtMKtYiGa3", "token": "01162332-a89c-40b2-8958-9d3092927d6c:oxYYhd5J9kfjZ92pVywHth:SGNH7o4zH4m4rtMKtYiGa3:1501145714220"},
+  "BATB": {"device_id": "EYRbp2GiYkg3rhTV3sug5i", "token": "7b25cb62-ebb4-4f4f-b516-c7cb15541b0e:oxYYhd5J9kfjZ92pVywHth:EYRbp2GiYkg3rhTV3sug5i:1501145732351"},
+  "LOAD": {"device_id": "GsyVca5AXgXjfRrctDmMnH", "token": "63b8adba-2cce-4a8b-b72f-393a853e84b8:oxYYhd5J9kfjZ92pVywHth:GsyVca5AXgXjfRrctDmMnH:1501145461405"},
+  "PCSTEST": {"device_id": "JiJtiAqxXnDMVRB4T8H8vW", "token": "8de3bf17-5899-4eef-992e-3a34c62236ca:oxYYhd5J9kfjZ92pVywHth:JiJtiAqxXnDMVRB4T8H8vW:1501145783344"},
+  "SOLAR": {"device_id": "MPeaeAijhqtdeSgMoxBrhK", "token": "b798ff38-cae4-47c3-9c36-f251892dfc31:oxYYhd5J9kfjZ92pVywHth:MPeaeAijhqtdeSgMoxBrhK:1501144885894"},
+  "H2G": {"device_id": "PfNnkvCPB3WymwQSLX4zqR", "token": "674f9bc6-43e0-42ea-a2aa-8371ee6ed16c:oxYYhd5J9kfjZ92pVywHth:PfNnkvCPB3WymwQSLX4zqR:1501145612532"},
+  "WIND": {"device_id": "SFeC9mj8q45mKjF7HdFg34", "token": "4eb22944-97c1-4112-9236-f9b0217eb738:oxYYhd5J9kfjZ92pVywHth:SFeC9mj8q45mKjF7HdFg34:1501145133174"},
+  "SWITCH": {"device_id": "wGPWpxE3gBCsaE2KoHodGn", "token": "dab41cff-52d0-4d37-87b4-b2f4ed206864:oxYYhd5J9kfjZ92pVywHth:wGPWpxE3gBCsaE2KoHodGn:1501145366005"},
+  "SOC": {"device_id": "WpVtD3UJvvXJQxD9NGw3Dn", "token": "52dd2090-c1ac-4fb6-9c34-1556ff961c36:oxYYhd5J9kfjZ92pVywHth:WpVtD3UJvvXJQxD9NGw3Dn:1501145117645"},
+  "FLOW": {"device_id": "XkVJvr35zh4gzTh4WZErwc", "token": "945757cc-0d88-4e59-a4b1-dcd1a1f69897:oxYYhd5J9kfjZ92pVywHth:XkVJvr35zh4gzTh4WZErwc:1501145348729"},
+  "AI_AIR": {"device_id": "YYeqV8tpBS2zb3qcv7oCJU", "token": "6533466d-450a-4b8a-9a43-3b960b5f87c7:oxYYhd5J9kfjZ92pVywHth:YYeqV8tpBS2zb3qcv7oCJU:1501145671931"}
+}
