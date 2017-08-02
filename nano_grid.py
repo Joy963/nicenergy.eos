@@ -260,10 +260,8 @@ def upload_data_to_cloud():
     log_count = defaultdict(lambda: 0)
 
     while True:
-        logger.info('##########')
         try:
             msg = data_queue.get(timeout=3)
-            logger.info(msg)
         except Queue.Empty:
             logger.error('Empty data queue')
             gevent.sleep(1)
