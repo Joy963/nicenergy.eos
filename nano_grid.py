@@ -264,6 +264,7 @@ def upload_data_to_cloud():
             msg = data_queue.get(timeout=3)
         except Queue.Empty:
             logger.error('Empty data queue')
+            gevent.sleep(1)
             continue
 
         try:
@@ -275,11 +276,11 @@ def upload_data_to_cloud():
         except Exception as e:
             logger.error(e)
             continue
+
         if log_count[dev_id] >= 60:
             logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
                         address, port, dev_id, len(data_list), r)
             log_count[dev_id] += 1
-        gevent.sleep(0)
 
 
 if __name__ == '__main__':
