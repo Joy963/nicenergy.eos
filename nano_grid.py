@@ -222,8 +222,13 @@ def recv_device_data():
                 }, data.get('runData', {}).items()))
 
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
-                r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
-                logger.info(r)
+                try:
+                    r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+                    logger.info(r)
+                except Exception as e:
+                    logger.error(e)
+                    continue
+
             if flag & select.POLLOUT:
                 try:
                     msg = message_queues.get_nowait()
