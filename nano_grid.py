@@ -218,11 +218,11 @@ def recv_device_data():
                     'sensor_id': sensor_map.get(dev_id, {}).get(x[0], {}).get('sensor_id'),
                     'data_type': sensor_map.get(dev_id, {}).get(x[0], {}).get('data_type', -1),
                     'timestamp': int(time.time() * 1000),
-                    'payload': x[1],
-                    'device_name': x[0]
+                    'payload': x[1]
                 }, data.get('runData', {}).items()))
 
                 token = device_token_map.get(dev_id, {}).get('token')
+                logger.info(token)
                 r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
                 logger.info(r)
             if flag & select.POLLOUT:
