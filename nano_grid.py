@@ -57,7 +57,7 @@ logging_config = dict(
 dictConfig(logging_config)
 logger = logging.getLogger('NanoGrid')
 
-db = MongoClient('mongodb://eos:eos12345678@172.10.8.102:27017').NanoGridData
+db = MongoClient('mongodb://eos:eos12345678@172.10.8.102:27017/NanoGridData')
 message_queues = Queue.Queue()
 data_queue = Queue.Queue()
 proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
