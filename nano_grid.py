@@ -11,7 +11,6 @@ import logging
 import gevent
 from gevent import monkey
 from pymongo import MongoClient
-from procbridge import procbridge
 from logging.config import dictConfig
 monkey.patch_all()
 import socket
@@ -25,7 +24,7 @@ TCP_SERVER_PORT = 50001
 READ_ONLY = (select.POLLIN | select.POLLPRI | select.POLLHUP | select.POLLERR)
 READ_WRITE = (READ_ONLY | select.POLLOUT)
 
-DATA_UPLOAD_API = "http://172.10.8.102:3000/api/nano_grids"
+DATA_UPLOAD_API = "http://127.0.0.1:3000/api/nano_grids/dataUpload"
 
 device_map = {
     "62UXfow4rw95RUga3xjzvg": {"name": "PEM", "port": 59439},
@@ -57,14 +56,9 @@ logging_config = dict(
 dictConfig(logging_config)
 logger = logging.getLogger('NanoGrid')
 
-db = MongoClient('mongodb://eos:eos12345678@172.10.8.102:27017/NanoGridData').NanoGridData
-logger.info(db)
+db = MongoClient('mongodb://eos:eos12345678@127.0.0.1:27017/NanoGridData').NanoGridData
 
 message_queues = Queue.Queue()
-# data_queue = Queue.Queue()
-# proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
-
-# reply = service.request('data', {})
 
 
 def signal_handler(sig, frame):
@@ -256,22 +250,8 @@ def recv_device_data():
         gevent.sleep(0.2)
 
 
-# def upload_data_to_cloud():
-#     while True:
-#         try:
-#             msg = data_queue.get(timeout=3)
-#         except Queue.Empty:
-#             continue
-#         try:
-#             reply = proc_service.request('data', {'data': msg})
-#         except Exception as e:
-#             # logger.info(msg)
-#             logger.error('proc_service error: %s', e)
-#             gevent.sleep(0.5)
-
 if __name__ == '__main__':
     gevent.joinall([
         gevent.spawn(cmd_server),
         gevent.spawn(recv_device_data)
-        # gevent.spawn(upload_data_to_cloud)
     ])
