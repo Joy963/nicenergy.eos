@@ -12,6 +12,7 @@ import gevent
 from gevent import monkey
 from pymongo import MongoClient
 from logging.config import dictConfig
+from collections import defaultdict
 monkey.patch_all()
 import socket
 import select
@@ -154,7 +155,7 @@ def cmd_server():
 def recv_device_data():
     udp_poller = select.poll()
     fd_to_socket = {}
-    log_count = {}
+    log_count = defaultdict(lambda: 0)
 
     with open('sensor_map.json') as f:
         try:
@@ -174,8 +175,6 @@ def recv_device_data():
     for _ in server_list:
         udp_poller.register(_, READ_WRITE)
         fd_to_socket[_.fileno()] = _
-
-    test_set = set()
 
     while True:
         events = udp_poller.poll(timeout)
@@ -207,12 +206,10 @@ def recv_device_data():
                 data['timestamp'] = int(time.time() * 1000)
                 dev_id = data.get('dev_id')
 
-                if log_count.get(dev_id, 0) >= 60:
-                    logger.debug("dev_id: %-6s, address: %s, port: %d" % (dev_id, a[0], a[1]))
-                    log_count[dev_id] = 0
-                else:
-                    log_count[dev_id] = log_count.get(dev_id, 0) + 1
-                db.nano_grid.insert_one(data)
+                try:
+                    db.nano_grid_origin.insert_one(data)
+                except Exception as e:
+                    logger.error(e)
 
                 data_list = list(map(lambda x: {
                     'sensor_id': sensor_map.get(dev_id, {}).get(x[0], {}).get('sensor_id'),
@@ -224,10 +221,14 @@ def recv_device_data():
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
                 try:
                     r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
-                    logger.info('dev_id: %-12s send_len: %d response: %s', dev_id, len(data_list), r)
                 except Exception as e:
                     logger.error(e)
                     continue
+
+                if log_count[dev_id] >= 60:
+                    logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
+                                a[0], a[1], dev_id, len(data_list), r)
+                log_count[dev_id] += 1
 
             if flag & select.POLLOUT:
                 try:
