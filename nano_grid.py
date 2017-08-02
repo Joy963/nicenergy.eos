@@ -57,10 +57,12 @@ logging_config = dict(
 dictConfig(logging_config)
 logger = logging.getLogger('NanoGrid')
 
-db = MongoClient('mongodb://eos:eos12345678@172.10.8.102:27017/NanoGridData')
+db = MongoClient('mongodb://eos:eos12345678@172.10.8.102:27017/NanoGridData').NanoGridData
+logger.info(db)
+
 message_queues = Queue.Queue()
-data_queue = Queue.Queue()
-proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
+# data_queue = Queue.Queue()
+# proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
 
 # reply = service.request('data', {})
 
@@ -254,18 +256,18 @@ def recv_device_data():
         gevent.sleep(0.2)
 
 
-def upload_data_to_cloud():
-    while True:
-        try:
-            msg = data_queue.get(timeout=3)
-        except Queue.Empty:
-            continue
-        try:
-            reply = proc_service.request('data', {'data': msg})
-        except Exception as e:
-            # logger.info(msg)
-            logger.error('proc_service error: %s', e)
-            gevent.sleep(0.5)
+# def upload_data_to_cloud():
+#     while True:
+#         try:
+#             msg = data_queue.get(timeout=3)
+#         except Queue.Empty:
+#             continue
+#         try:
+#             reply = proc_service.request('data', {'data': msg})
+#         except Exception as e:
+#             # logger.info(msg)
+#             logger.error('proc_service error: %s', e)
+#             gevent.sleep(0.5)
 
 if __name__ == '__main__':
     gevent.joinall([
