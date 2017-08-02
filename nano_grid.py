@@ -224,7 +224,7 @@ def recv_device_data():
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
                 try:
                     r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
-                    logger.info('dev_id: %s send_len: %d response: %s', dev_id, len(data_list), r)
+                    logger.info('dev_id: %-12s send_len: %d response: %s', dev_id, len(data_list), r)
                 except Exception as e:
                     logger.error(e)
                     continue
