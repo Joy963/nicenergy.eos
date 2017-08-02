@@ -263,6 +263,7 @@ def upload_data_to_cloud():
         try:
             msg = data_queue.get(timeout=3)
         except Queue.Empty:
+            logger.error('Empty data queue')
             continue
 
         try:
