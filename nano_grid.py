@@ -277,7 +277,6 @@ def upload_data_to_cloud():
             logger.error(e)
             continue
 
-        logger.info(log_count[dev_id])
         if log_count[dev_id] >= 60:
             logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
                         address, port, dev_id, len(data_list), r)
