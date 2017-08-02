@@ -60,6 +60,7 @@ logger = logging.getLogger('NanoGrid')
 db = MongoClient('mongodb://eos:eos12345678@127.0.0.1:27017/NanoGridData').NanoGridData
 
 message_queues = Queue.Queue()
+data_queue = Queue.Queue()
 
 
 def signal_handler(sig, frame):
@@ -155,7 +156,6 @@ def cmd_server():
 def recv_device_data():
     udp_poller = select.poll()
     fd_to_socket = {}
-    log_count = defaultdict(lambda: 0)
 
     with open('sensor_map.json') as f:
         try:
@@ -219,16 +219,17 @@ def recv_device_data():
                 }, data.get('runData', {}).items()))
 
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
-                try:
-                    r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
-                except Exception as e:
-                    logger.error(e)
-                    continue
-
-                if log_count[dev_id] >= 60:
-                    logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
-                                a[0], a[1], dev_id, len(data_list), r)
-                log_count[dev_id] += 1
+                data_queue.put({'token': token, 'data': data_list, 'address': a, 'dev_id': dev_id})
+                # try:
+                #     r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+                # except Exception as e:
+                #     logger.error(e)
+                #     continue
+                #
+                # if log_count[dev_id] >= 60:
+                #     logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
+                #                 a[0], a[1], dev_id, len(data_list), r)
+                # log_count[dev_id] += 1
 
             if flag & select.POLLOUT:
                 try:
@@ -255,8 +256,34 @@ def recv_device_data():
         gevent.sleep(0.2)
 
 
+def upload_data_to_cloud():
+    log_count = defaultdict(lambda: 0)
+
+    while True:
+        try:
+            msg = data_queue.get(timeout=3)
+        except Queue.Empty:
+            continue
+
+        try:
+            address, port = msg.get('address')
+            dev_id = msg.get('dev_id')
+            token = msg.get('token', '')
+            data_list = msg.get('data', [])
+            r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+        except Exception as e:
+            logger.error(e)
+            continue
+        if log_count[dev_id] >= 60:
+            logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
+                        address, port, dev_id, len(data_list), r)
+            log_count[dev_id] += 1
+        gevent.sleep(0)
+
+
 if __name__ == '__main__':
     gevent.joinall([
         gevent.spawn(cmd_server),
-        gevent.spawn(recv_device_data)
+        gevent.spawn(recv_device_data),
+        gevent.spawn(upload_data_to_cloud)
     ])
