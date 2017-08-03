@@ -211,6 +211,13 @@ def recv_device_data():
                 except Exception as e:
                     logger.error(e)
 
+                # DEBUG
+                for k, v in data.get('runData', {}).items():
+                    if not sensor_map.get(dev_id, {}).get(k, {}).get('sensor_id'):
+                        logger.error('##############')
+                        logger.error("dev_id: %s key: %s", dev_id, k)
+                        logger.error('##############')
+
                 data_list = list(map(lambda x: {
                     'sensor_id': sensor_map.get(dev_id, {}).get(x[0], {}).get('sensor_id'),
                     'data_type': sensor_map.get(dev_id, {}).get(x[0], {}).get('data_type', -1),
@@ -220,17 +227,6 @@ def recv_device_data():
 
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
                 data_queue.put({'token': token, 'data': data_list, 'address': a, 'dev_id': dev_id})
-                # try:
-                #     r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
-                # except Exception as e:
-                #     logger.error(e)
-                #     continue
-                #
-                # if log_count[dev_id] >= 60:
-                #     logger.info('[%s:%d] dev_id: %-12s send_len: %d response: %s',
-                #                 a[0], a[1], dev_id, len(data_list), r)
-                # log_count[dev_id] += 1
-
             if flag & select.POLLOUT:
                 try:
                     msg = message_queues.get_nowait()
