@@ -264,7 +264,7 @@ def upload_data_to_cloud():
             dev_id = msg.get('dev_id')
             token = msg.get('token', '')
             data_list = msg.get('data', [])
-            proc_service.request('data', {'data': data_list})
+            r = proc_service.request('data', {'data': data_list})
             # r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
         except Exception as e:
             logger.error(e)
