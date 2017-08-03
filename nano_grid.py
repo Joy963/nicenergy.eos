@@ -250,6 +250,7 @@ def recv_device_data():
 
 def upload_data_to_cloud():
     log_count = defaultdict(lambda: 0)
+    data_count = 0
 
     while True:
         try:
@@ -262,13 +263,15 @@ def upload_data_to_cloud():
         try:
             address, port = msg.get('address')
             dev_id = msg.get('dev_id')
-            token = msg.get('token', '')
+            # token = msg.get('token', '')
             data_list = msg.get('data', [])
             r = proc_service.request('data', {'data': data_list})
+            data_count += len(data_list)
             # r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
         except Exception as e:
             logger.error(e)
             continue
+        logger.info('timestamp: %d, length: %d', int(time.time()), data_count)
 
         if log_count[dev_id] >= 1:
             log_count[dev_id] = 0
