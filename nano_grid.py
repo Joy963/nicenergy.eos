@@ -219,13 +219,6 @@ def recv_device_data():
                     'desc': x[0]
                 }, data.get('runData', {}).items())))
 
-                # DEBUG
-                for _ in data_list:
-                    if not _.get('sensor_id'):
-                        logger.error('##############')
-                        logger.error("dev_id: %s key: %s", dev_id, _.get('desc'))
-                        logger.error('##############')
-
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
                 data_queue.put({'token': token, 'data': data_list, 'address': a, 'dev_id': dev_id})
             if flag & select.POLLOUT:
