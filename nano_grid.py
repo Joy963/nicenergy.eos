@@ -13,6 +13,7 @@ from gevent import monkey
 from pymongo import MongoClient
 from logging.config import dictConfig
 from collections import defaultdict
+from procbridge import procbridge
 monkey.patch_all()
 import socket
 import select
@@ -24,8 +25,8 @@ MCAST_PORT_LIST = range(59433, 59447)
 TCP_SERVER_PORT = 50001
 READ_ONLY = (select.POLLIN | select.POLLPRI | select.POLLHUP | select.POLLERR)
 READ_WRITE = (READ_ONLY | select.POLLOUT)
-
 DATA_UPLOAD_API = "http://127.0.0.1:3000/api/nano_grids/dataUpload"
+proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
 
 device_map = {
     "62UXfow4rw95RUga3xjzvg": {"name": "PEM", "port": 59439},
@@ -83,7 +84,8 @@ def gen_udp_socket(port):
             s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 32)
             s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_LOOP, 1)
             s.setsockopt(socket.SOL_IP, socket.IP_MULTICAST_IF, socket.inet_aton(HOST))
-            s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, socket.inet_aton(MCAST_ADDR) + socket.inet_aton(HOST))
+            s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, socket.inet_aton(MCAST_ADDR)
+                         + socket.inet_aton(HOST))
 
             s.bind((MCAST_ADDR, port))
             return s
@@ -262,7 +264,8 @@ def upload_data_to_cloud():
             dev_id = msg.get('dev_id')
             token = msg.get('token', '')
             data_list = msg.get('data', [])
-            r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+            proc_service.request('data', {'data': data_list})
+            # r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
         except Exception as e:
             logger.error(e)
             continue
