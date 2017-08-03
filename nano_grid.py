@@ -5,7 +5,7 @@ try:
     import Queue
 except ImportError:
     import queue as Queue
-import requests
+# import requests
 import signal
 import logging
 import gevent
@@ -250,7 +250,6 @@ def recv_device_data():
 
 def upload_data_to_cloud():
     log_count = defaultdict(lambda: 0)
-    data_count = 0
 
     while True:
         try:
@@ -266,12 +265,10 @@ def upload_data_to_cloud():
             # token = msg.get('token', '')
             data_list = msg.get('data', [])
             r = proc_service.request('data', {'data': data_list})
-            data_count += len(data_list)
             # r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
         except Exception as e:
             logger.error(e)
             continue
-        logger.info('timestamp: %d, length: %d', int(time.time()), data_count)
 
         if log_count[dev_id] >= 60:
             log_count[dev_id] = 0
