@@ -211,19 +211,20 @@ def recv_device_data():
                 except Exception as e:
                     logger.error(e)
 
-                # DEBUG
-                for k, v in data.get('runData', {}).items():
-                    if not sensor_map.get(dev_id, {}).get(k, {}).get('sensor_id'):
-                        logger.error('##############')
-                        logger.error("dev_id: %s key: %s", dev_id, k)
-                        logger.error('##############')
-
-                data_list = list(map(lambda x: {
+                data_list = list(filter(lambda _: _.get('sensor_id'), map(lambda x: {
                     'sensor_id': sensor_map.get(dev_id, {}).get(x[0], {}).get('sensor_id'),
                     'data_type': sensor_map.get(dev_id, {}).get(x[0], {}).get('data_type', -1),
                     'timestamp': int(time.time() * 1000),
-                    'payload': x[1]
-                }, data.get('runData', {}).items()))
+                    'payload': x[1],
+                    'desc': x[0]
+                }, data.get('runData', {}).items())))
+
+                # DEBUG
+                for _ in data_list:
+                    if not _.get('sensor_id'):
+                        logger.error('##############')
+                        logger.error("dev_id: %s key: %s", dev_id, _.get('desc'))
+                        logger.error('##############')
 
                 token = device_token_map.get(dev_id.upper(), {}).get('token', '')
                 data_queue.put({'token': token, 'data': data_list, 'address': a, 'dev_id': dev_id})
