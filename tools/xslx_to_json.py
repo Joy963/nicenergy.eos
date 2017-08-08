@@ -6,6 +6,7 @@ from openpyxl import load_workbook
 
 device_id = sys.argv[2]
 CREATE_SENSOR_API = "http://119.254.211.60:8000/api/1.0.0/sensors/"
+AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inl6Zzk2M0BnbWFpbC5jb20iLCJleHAiOjE1MDQ3NzA0ODcsInVzZXJfaWQiOiJwM05hcXE0cm1oS25YeVpld1ZWRXZVIiwib3JpZ19pYXQiOjE1MDIxNzg0ODcsImVtYWlsIjoieXpnOTYzQGdtYWlsLmNvbSJ9.IW2flXNSTwwPTAdYmnh4JeIW1vgb65gVXelElC4x6QQ'
 
 unit_map = {
     "℃": {"data_type": 0, "desc": "摄氏度(˚C)"},
@@ -46,7 +47,7 @@ def get_data_type(unit):
 
 
 def create_sensor(name=""):
-    headers = {'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnX2lhdCI6MTUwMTE0MjM5NCwiZXhwIjoxNTAzNzM0Mzk0LCJ1c2VyX2lkIjoieHZtanNKOXFnbUxjQ2ZqWm5RYnR5NiIsImVtYWlsIjoieXpnOTYzQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoieXpnOTYzQGdtYWlsLmNvbSJ9.IiRN75jXdXAoYZ8kbPgIT7b9MWbFWGR9hDRKiHz6Nh0'}
+    headers = {'Authorization': 'JWT %s' % AUTH_TOKEN}
     json_para = {"device": device_id, "data_source": "external", "data_type": -1, "name": name}
     rsp = requests.post(CREATE_SENSOR_API, headers=headers, json=json_para)
     return json.loads(rsp.content).get('id')
@@ -80,8 +81,7 @@ with open('output.md', 'w') as f_md, open('output.json', 'w') as f_json:
     ])
     for _ in list(zip(*result))[1:]:
         if _[1] != 'hide' and _[0] not in content_json_output:
-            # sensor_id = create_sensor(name=_[0])
-            sensor_id = ''
+            sensor_id = create_sensor(name=_[0])
             json_output[_[0]] = {'sensor_id': sensor_id, 'unit': _[3], 'data_type': get_data_type(_[3])}
             line = "|{sensor}|{name}|{unit}|{desc}|{display_type}|\n".format(
                 sensor=sensor_id, name=_[0], desc=_[2], display_type=_[1], unit=_[3])

@@ -1,4 +1,4 @@
-# Solar: MPeaeAijhqtdeSgMoxBrhK
+# Solar: suUx5wwxcgVQMgnaZzSzDH
 
 | Sensor                 | Name                 | Unit | Desc          | DisplayType |
 | ---------------------- | -------------------- | ---- | ------------- | ----------- |

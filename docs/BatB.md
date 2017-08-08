@@ -1,4 +1,4 @@
-# BatB: EYRbp2GiYkg3rhTV3sug5i
+# BatB: vEhjAmaEX87QbMcK8jixYn
 
 | Sensor                 | Name                   | Unit | Desc        | DisplayType |
 | ---------------------- | ---------------------- | ---- | ----------- | ----------- |

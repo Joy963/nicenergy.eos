@@ -1,4 +1,4 @@
-# BatA: SGNH7o4zH4m4rtMKtYiGa3
+# BatA: 9Uw5LrQ4VQqivpWk4ShcW8
 
 | Sensor                 | Name                     | Unit | Desc          | DisplayType |
 | ---------------------- | ------------------------ | ---- | ------------- | ----------- |

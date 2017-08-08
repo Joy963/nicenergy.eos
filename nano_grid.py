@@ -29,19 +29,19 @@ DATA_UPLOAD_API = "http://127.0.0.1:3000/api/nano_grids/dataUpload"
 proc_service = procbridge.ProcBridge('127.0.0.1', 8200)
 
 device_map = {
-    "62UXfow4rw95RUga3xjzvg": {"name": "PEM", "port": 59439},
-    "c88TkQxBn3qPbQwN2fUoKm": {"name": "FR", "port": 59437},
+    "WyNfGzjR6dVwPM4jN9ay8n": {"name": "PEM", "port": 59439},
+    "FnT5gWCUwLEoMZUFhpAfAm": {"name": "FR", "port": 59437},
     "D3eNJiXb4irfNzUofTFbJb": {"name": "HMI", "port": 59448},
-    "SGNH7o4zH4m4rtMKtYiGa3": {"name": "BatA", "port": 59435},
-    "EYRbp2GiYkg3rhTV3sug5i": {"name": "BatB", "port": 59436},
+    "Uw5LrQ4VQqivpWk4ShcW8": {"name": "BatA", "port": 59435},
+    "vEhjAmaEX87QbMcK8jixYn": {"name": "BatB", "port": 59436},
     "GsyVca5AXgXjfRrctDmMnH": {"name": "Load", "port": 59442},
     "JiJtiAqxXnDMVRB4T8H8vW": {"name": "PCS Test", "port": 59447},
-    "MPeaeAijhqtdeSgMoxBrhK": {"name": "Solar", "port": 59434},
+    "suUx5wwxcgVQMgnaZzSzDH": {"name": "Solar", "port": 59434},
     "PfNnkvCPB3WymwQSLX4zqR": {"name": "H2G", "port": 59441},
-    "SFeC9mj8q45mKjF7HdFg34": {"name": "Wind", "port": 59433},
-    "wGPWpxE3gBCsaE2KoHodGn": {"name": "Switch", "port": 59446},
-    "WpVtD3UJvvXJQxD9NGw3Dn": {"name": "SOC", "port": 59440},
-    "XkVJvr35zh4gzTh4WZErwc": {"name": "Flow", "port": 59438},
+    "uVQH7GmNsiwqdUYvoqenEQ": {"name": "Wind", "port": 59433},
+    "jpXwNvVX4umZqkWgNsVDKj": {"name": "Switch", "port": 59446},
+    "JdbL6SjeTVJC4P9bqz7CVM": {"name": "SOC", "port": 59440},
+    "vbRJrDp3uFzUCafEDtkA9Q": {"name": "Flow", "port": 59438},
     "YYeqV8tpBS2zb3qcv7oCJU": {"name": "AI_Air", "port": 59443}
 }
 

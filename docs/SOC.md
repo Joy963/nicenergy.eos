@@ -1,4 +1,4 @@
-# SOC: WpVtD3UJvvXJQxD9NGw3Dn
+# SOC: JdbL6SjeTVJC4P9bqz7CVM
 
 | Sensor                 | Name               | Unit  | Desc      | DisplayType |
 | ---------------------- | ------------------ | ----- | --------- | ----------- |

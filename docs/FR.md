@@ -1,4 +1,4 @@
-# FR: c88TkQxBn3qPbQwN2fUoKm
+# FR: FnT5gWCUwLEoMZUFhpAfAm
 
 | Sensor                 | Name                       | Unit | Desc                                     | DisplayType |
 | ---------------------- | -------------------------- | ---- | ---------------------------------------- | ----------- |

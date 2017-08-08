@@ -1,4 +1,4 @@
-# Switch: wGPWpxE3gBCsaE2KoHodGn
+# Switch: jpXwNvVX4umZqkWgNsVDKj
 
 | Sensor                 | Name      | Unit | Desc                | DisplayType |
 | ---------------------- | --------- | ---- | ------------------- | ----------- |
