@@ -4,7 +4,10 @@ import json
 import requests
 from openpyxl import load_workbook
 
+xlsx_filename = sys.argv[1]
 device_id = sys.argv[2]
+device_name = sys.argv[3]
+
 CREATE_SENSOR_API = "http://119.254.211.60:8000/api/1.0.0/sensors/"
 AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inl6Zzk2M0BnbWFpbC5jb20iLCJleHAiOjE1MDQ3NzA0ODcsInVzZXJfaWQiOiJwM05hcXE0cm1oS25YeVpld1ZWRXZVIiwib3JpZ19pYXQiOjE1MDIxNzg0ODcsImVtYWlsIjoieXpnOTYzQGdtYWlsLmNvbSJ9.IW2flXNSTwwPTAdYmnh4JeIW1vgb65gVXelElC4x6QQ'
 
@@ -46,15 +49,21 @@ def get_data_type(unit):
     return -1
 
 
-def create_sensor(name=""):
+def create_sensor(name="", data_type=-1):
     headers = {'Authorization': 'JWT %s' % AUTH_TOKEN}
-    json_para = {"device": device_id, "data_source": "external", "data_type": -1, "name": name}
-    rsp = requests.post(CREATE_SENSOR_API, headers=headers, json=json_para)
-    return json.loads(rsp.content).get('id')
+    json_para = {"device": device_id, "data_source": "external", "data_type": data_type, "name": name}
+    try:
+        rsp = requests.post(CREATE_SENSOR_API, headers=headers, json=json_para)
+        return json.loads(rsp.content).get('id')
+    except Exception as e:
+        print(e)
+        print(json_para)
+        return ''
+
 
 # import xlsx
 key_list = ['Parameter', 'DisplayType', 'Description', 'Unit']
-wb = load_workbook(filename=sys.argv[1])
+wb = load_workbook(filename=xlsx_filename)
 sheets = wb.get_sheet_names()
 ws = wb.get_sheet_by_name(sheets[0])
 
@@ -69,11 +78,12 @@ for _ in ws.columns:
 # create sensor by request api and then generate markdown file and json map file
 json_output = {}
 try:
-    content_json_output = open('output.json', 'w+').read()
+    content_json_output = open('%s.json' % device_name, 'w+').read()
 except ValueError:
     content_json_output = {}
 
-with open('output.md', 'w') as f_md, open('output.json', 'w') as f_json:
+with open('../docs/%s.md' % device_name, 'w') as f_md, \
+        open('%s.json' % device_name, 'w') as f_json:
     f_md.writelines([
         "# PEM: %s\n\n" % device_id,
         "|Sensor|Name|Unit|Desc|DisplayType|\n"
@@ -81,10 +91,13 @@ with open('output.md', 'w') as f_md, open('output.json', 'w') as f_json:
     ])
     for _ in list(zip(*result))[1:]:
         if _[1] != 'hide' and _[0] not in content_json_output:
-            sensor_id = create_sensor(name=_[0])
-            json_output[_[0]] = {'sensor_id': sensor_id, 'unit': _[3], 'data_type': get_data_type(_[3])}
+            _data_type = get_data_type(_[3])
+            sensor_id = create_sensor(name=_[0], data_type=_data_type)
+            json_output[_[0]] = {'sensor_id': sensor_id, 'unit': _[3], 'data_type': _data_type}
             line = "|{sensor}|{name}|{unit}|{desc}|{display_type}|\n".format(
                 sensor=sensor_id, name=_[0], desc=_[2], display_type=_[1], unit=_[3])
             f_md.writelines([line])
-    f_json.write(json.dumps({'KEY': json_output}))
+    f_json.write(json.dumps({device_name: json_output}))
 
+# TODO
+# 7_BatteryV6_4
