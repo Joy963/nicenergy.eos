@@ -21,6 +21,8 @@ with open('../sensor_map_old.json') as f_old, open('../sensor_map.json') as f_ne
 
         if old_second_keys == new_second_keys:
             print(k, ' PASS')
+        elif k == 'BatB':
+            print(k, 'WAIT')
         else:
             print(k)
             print('old - new: ', old_second_keys - new_second_keys)
