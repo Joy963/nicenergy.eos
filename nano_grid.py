@@ -136,7 +136,7 @@ def cmd_server():
                         s.close()
                     else:
                         try:
-                            d = json.loads(data)
+                            d = json.loads(data.decode('utf-8'))
                             logger.info(d)
                             if all([d.get('device_id'), d.get('cmd'), d.get('para_len')]):
                                 message_queues.put(d)
