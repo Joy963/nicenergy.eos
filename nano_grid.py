@@ -240,7 +240,7 @@ def recv_device_data():
                     'para_len': msg.get('para_len'),
                     'parameter': msg.get('parameter', [])
                 }
-                s.sendto(json.dumps(msg_to_send), (MCAST_ADDR, port))
+                s.sendto(json.dumps(msg_to_send).encode('utf-8'), (MCAST_ADDR, port))
                 logger.debug(msg_to_send)
             elif flag & select.POLLHUP:
                 logger.info('POLLHUP')
