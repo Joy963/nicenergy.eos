@@ -60,8 +60,10 @@ if __name__ == '__main__':
     now = datetime.datetime.now()
     timestamp = int(time.mktime(datetime.datetime(now.year, now.month, now.day).timetuple()))
     for _ in range(90):
-        _data = get_weather_data(ts=timestamp-_*86400)
-        logger.info(datetime.datetime.fromtimestamp(timestamp - _*86400))
+        new_timestamp = timestamp-_*86400
+        _data = get_weather_data(ts=new_timestamp)
+        _data['data'] = str(datetime.datetime.fromtimestamp(new_timestamp))
+        logger.info(datetime.datetime.fromtimestamp(new_timestamp))
         save_weather_data(_data)
 
 
