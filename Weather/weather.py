@@ -50,8 +50,9 @@ def get_weather_data(ts=None):
 
 def save_weather_data(d):
     try:
-        r = requests.post(DATA_URL, data=d)
-        logger.info(r)
+        headers = {'Content-Type': 'application/json'}
+        r = requests.post(DATA_URL, data=d, headers=headers)
+        logger.info(r.content)
     except Exception as e:
         logger.error(e)
 
