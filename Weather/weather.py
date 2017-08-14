@@ -66,6 +66,7 @@ if __name__ == '__main__':
             _data = get_weather_data(ts=new_timestamp)
             _data['date'] = str(datetime.datetime.fromtimestamp(new_timestamp))
             logger.info(datetime.datetime.fromtimestamp(new_timestamp))
+            logger.info(_data)
             save_weather_data(_data)
     else:
         _data = get_weather_data(ts=timestamp)
