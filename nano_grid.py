@@ -5,7 +5,7 @@ try:
     import Queue
 except ImportError:
     import queue as Queue
-# import requests
+import requests
 import signal
 import logging
 import gevent
@@ -263,10 +263,12 @@ def upload_data_to_cloud():
         try:
             address, port = msg.get('address')
             dev_id = msg.get('dev_id')
-            # token = msg.get('token', '')
+            token = msg.get('token', '')
+            logger.info('token: %s', token)
             data_list = msg.get('data', [])
             r = proc_service.request('data', {'data': data_list})
-            # r = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+            rsp = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+            logger.info(rsp)
         except Exception as e:
             logger.error(e)
             continue
