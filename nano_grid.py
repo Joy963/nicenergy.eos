@@ -249,11 +249,11 @@ def recv_device_data():
         gevent.sleep(0.2)
 
 
-def upload_data_to_cloud():
+def upload_data_to_cloud(task_id=-1):
     log_count = defaultdict(lambda: 0)
 
     while True:
-        logger.info("data_queue length: %d", data_queue.qsize())
+        logger.info("[%d] data_queue length: %d", task_id, data_queue.qsize())
         try:
             msg = data_queue.get(timeout=3)
         except Queue.Empty:
@@ -284,12 +284,12 @@ if __name__ == '__main__':
     gevent.joinall([
         gevent.spawn(cmd_server),
         gevent.spawn(recv_device_data),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud),
-        gevent.spawn(upload_data_to_cloud)
+        gevent.spawn(upload_data_to_cloud, 0),
+        gevent.spawn(upload_data_to_cloud, 1),
+        gevent.spawn(upload_data_to_cloud, 2),
+        gevent.spawn(upload_data_to_cloud, 3),
+        gevent.spawn(upload_data_to_cloud, 4),
+        gevent.spawn(upload_data_to_cloud, 5),
+        gevent.spawn(upload_data_to_cloud, 6),
+        gevent.spawn(upload_data_to_cloud, 7)
     ])
