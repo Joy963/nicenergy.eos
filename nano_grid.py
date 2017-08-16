@@ -291,5 +291,12 @@ if __name__ == '__main__':
         gevent.spawn(upload_data_to_cloud, 4),
         gevent.spawn(upload_data_to_cloud, 5),
         gevent.spawn(upload_data_to_cloud, 6),
-        gevent.spawn(upload_data_to_cloud, 7)
+        gevent.spawn(upload_data_to_cloud, 7),
+        gevent.spawn(upload_data_to_cloud, 8),
+        gevent.spawn(upload_data_to_cloud, 9),
+        gevent.spawn(upload_data_to_cloud, 10),
+        gevent.spawn(upload_data_to_cloud, 11),
+        gevent.spawn(upload_data_to_cloud, 12),
+        gevent.spawn(upload_data_to_cloud, 13),
+        gevent.spawn(upload_data_to_cloud, 14)
     ])
