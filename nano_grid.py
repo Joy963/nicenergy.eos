@@ -284,5 +284,7 @@ if __name__ == '__main__':
     gevent.joinall([
         gevent.spawn(cmd_server),
         gevent.spawn(recv_device_data),
+        gevent.spawn(upload_data_to_cloud),
+        gevent.spawn(upload_data_to_cloud),
         gevent.spawn(upload_data_to_cloud)
     ])
