@@ -72,6 +72,17 @@ signal.signal(signal.SIGTERM, signal_handler)
 signal.signal(signal.SIGINT, signal_handler)
 
 
+def exec_time(func):
+    def _func(*args, **args2):
+        t0 = time.time()
+        logger.debug("@%s, {%s} start" % (time.strftime("%X", time.localtime()), func.__name__))
+        back = func(*args, **args2)
+        logger.debug("@%s, {%s} end" % (time.strftime("%X", time.localtime()), func.__name__))
+        logger.debug("@%.3fs taken for {%s}" % (time.time() - t0, func.__name__))
+        return back
+    return _func
+
+
 def get_device_port_by_id(device_id):
     return device_map.get(device_id, {}).get('port')
 
@@ -249,6 +260,7 @@ def recv_device_data():
         gevent.sleep(0.2)
 
 
+@exec_time
 def upload_data_to_cloud(task_id=-1):
     log_count = defaultdict(lambda: 0)
 
