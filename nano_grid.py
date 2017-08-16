@@ -78,7 +78,7 @@ def exec_time(func):
         logger.debug("@%s, {%s} start" % (time.strftime("%X", time.localtime()), func.__name__))
         back = func(*args, **args2)
         logger.debug("@%s, {%s} end" % (time.strftime("%X", time.localtime()), func.__name__))
-        logger.debug("@%.3fs taken for {%s}" % (time.time() - t0, func.__name__))
+        logger.info("@%.3fs taken for {%s}" % (time.time() - t0, func.__name__))
         return back
     return _func
 
