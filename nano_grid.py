@@ -298,4 +298,4 @@ def upload_data_to_cloud(task_id=-1):
 
 if __name__ == '__main__':
     gevent.joinall([gevent.spawn(cmd_server), gevent.spawn(recv_device_data)] +
-                   list(map(lambda _: gevent.spawn(upload_data_to_cloud, _), range(20))))
+                   list(map(lambda _: gevent.spawn(upload_data_to_cloud, _), range(5))))
