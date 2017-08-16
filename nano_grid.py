@@ -278,8 +278,12 @@ def upload_data_to_cloud(task_id=-1):
             token = msg.get('token', '')
             # logger.info('token: %s', token)
             data_list = msg.get('data', [])
+            t1 = time.time()
             r = proc_service.request('data', {'data': data_list})
+            t2 = time.time()
             rsp = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
+            t3 = time.time()
+            logger.info("[%d] t2-t1: %.3f, t3-t2: %.3f", task_id, t2-t1, t3-t2)
             logger.info(rsp)
         except Exception as e:
             logger.error(e)
