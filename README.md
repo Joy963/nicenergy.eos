@@ -14,5 +14,6 @@
 | Switch   | [jpXwNvVX4umZqkWgNsVDKj](docs/Switch.md) | *    |
 | SOC      | [JdbL6SjeTVJC4P9bqz7CVM](docs/SOC.md)    | *    |
 | Flow     | [vbRJrDp3uFzUCafEDtkA9Q](docs/Flow.md)   | *    |
-| AI_Air   | YYeqV8tpBS2zb3qcv7oCJU              |      |
+| AI_Air   | YYeqV8tpBS2zb3qcv7oCJU                   |      |
+|Navigation| [H9Z2o68BtDPRGWMTk4cfPV](docs/Navigation.md)| *    |
 
