@@ -8,8 +8,8 @@ xlsx_filename = sys.argv[1]
 device_id = sys.argv[2]
 device_name = sys.argv[3]
 
-CREATE_SENSOR_API = "http://119.254.211.60:8000/api/1.0.0/sensors/"
-AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inl6Zzk2M0BnbWFpbC5jb20iLCJleHAiOjE1MDQ3NzA0ODcsInVzZXJfaWQiOiJwM05hcXE0cm1oS25YeVpld1ZWRXZVIiwib3JpZ19pYXQiOjE1MDIxNzg0ODcsImVtYWlsIjoieXpnOTYzQGdtYWlsLmNvbSJ9.IW2flXNSTwwPTAdYmnh4JeIW1vgb65gVXelElC4x6QQ'
+CREATE_SENSOR_API = "https://admin.leaniot.cn/api/1.0.0/sensors/"
+AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmlnX2lhdCI6MTUwODMwODY0MSwiZXhwIjoxNTEwOTAwNjQxLCJ1c2VybmFtZSI6Inl6Zzk2M0BnbWFpbC5jb20iLCJ1c2VyX2lkIjoicDNOYXFxNHJtaEtuWHlaZXdWVkV2VSIsImVtYWlsIjoieXpnOTYzQGdtYWlsLmNvbSJ9.9o0lvvNaHA9CNrE0cT4eQyL2pCFEIO9b78wkTOcz-64'
 
 unit_map = {
     "℃": {"data_type": 0, "desc": "摄氏度(˚C)"},
@@ -51,9 +51,10 @@ def get_data_type(unit):
 
 def create_sensor(name="", data_type=-1):
     headers = {'Authorization': 'JWT %s' % AUTH_TOKEN}
-    json_para = {"device": device_id, "data_source": "external", "data_type": data_type, "name": name}
+    json_para = {"device": device_id, "data_source": "external", "data_type": data_type, "name": name, "tag": []}
     try:
         rsp = requests.post(CREATE_SENSOR_API, headers=headers, json=json_para)
+        print(rsp.content)
         return json.loads(rsp.content).get('id')
     except Exception as e:
         print(e)
@@ -93,6 +94,7 @@ with open('../docs/%s.md' % device_name, 'w') as f_md, \
         if _[1] != 'hide' and _[0] not in content_json_output:
             _data_type = get_data_type(_[3])
             sensor_id = create_sensor(name=_[0], data_type=_data_type)
+            # sensor_id = ''
             json_output[_[0]] = {'sensor_id': sensor_id, 'unit': _[3], 'data_type': _data_type}
             line = "|{sensor}|{name}|{unit}|{desc}|{display_type}|\n".format(
                 sensor=sensor_id, name=_[0], desc=_[2], display_type=_[1], unit=_[3])
