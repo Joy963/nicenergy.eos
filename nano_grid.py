@@ -289,7 +289,7 @@ def upload_data_to_cloud(task_id=-1):
             logger.error(e)
             continue
 
-        if log_count[dev_id] >= 60:
+        if log_count[dev_id] >= 10:
             log_count[dev_id] = 0
             logger.info('[task_id: %d][%s:%d] dev_id: %-12s send_len: %d response: %s',
                         task_id, address, port, dev_id, len(data_list), r)
