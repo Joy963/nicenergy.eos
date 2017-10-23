@@ -199,7 +199,7 @@ def recv_device_data():
                     logger.error("Unknown server")
                     continue
                 try:
-                    d, a = s.recvfrom(10240)
+                    d, a = s.recvfrom(40960)
                     if not d:
                         continue
                 except socket.error as e:
