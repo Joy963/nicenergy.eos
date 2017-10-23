@@ -265,7 +265,7 @@ def upload_data_to_cloud(task_id=-1):
     log_count = defaultdict(lambda: 0)
 
     while True:
-        logger.info("[%d] data_queue length: %d", task_id, data_queue.qsize())
+        # logger.info("[%d] data_queue length: %d", task_id, data_queue.qsize())
         try:
             msg = data_queue.get(timeout=3)
         except Queue.Empty:
@@ -283,8 +283,8 @@ def upload_data_to_cloud(task_id=-1):
             t2 = time.time()
             rsp = requests.post(DATA_UPLOAD_API, json={'token': token, 'data': data_list}).content
             t3 = time.time()
-            logger.info("[%d] t2-t1: %.3f, t3-t2: %.3f", task_id, t2-t1, t3-t2)
-            logger.info(rsp)
+            # logger.info("[%d] t2-t1: %.3f, t3-t2: %.3f", task_id, t2-t1, t3-t2)
+            # logger.info(rsp)
         except Exception as e:
             logger.error(e)
             continue
