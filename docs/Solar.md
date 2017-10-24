@@ -34,3 +34,6 @@
 |iNFzeEBRJBqdJh3zhhJHHY|FaultTime_Second|None|故障告警时间：秒|num|
 |GZiDbyPgxXrP5P6xYbSt6d|FaultCode|None|故障告警码|num|
 |xs2dtAWKB3LKA6zBEBuFx3|Qref|kvar|额定无功功率|num|
+|tCJNfbFyXUA9ivgE7GvLfn|P_15min|kW|15min后有功功率预测值|line|
+|LUNrXauUA9Pn4GhLcUnTyZ|P_30min|kW|30min后有功功率预测值|line|
+|zrQAMUkij3u6RySazQo8jM|P_60min|kW|60min后有功功率预测值|line|
