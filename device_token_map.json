@@ -12,5 +12,6 @@
   "SWITCH": {"device_id": "jpXwNvVX4umZqkWgNsVDKj", "token": "fb17720b-a854-4828-ba72-7a4e43614e1f:4yWtgDDoUX2tHRPmxMMCGa:jpXwNvVX4umZqkWgNsVDKj:1502177721975"},
   "SOC": {"device_id": "JdbL6SjeTVJC4P9bqz7CVM", "token": "c852a626-d4bf-493d-bc37-41e5dd868f95:4yWtgDDoUX2tHRPmxMMCGa:JdbL6SjeTVJC4P9bqz7CVM:1502177745578"},
   "FLOW": {"device_id": "vbRJrDp3uFzUCafEDtkA9Q", "token": "d04eb6e0-711a-4372-b988-c6586f26029e:4yWtgDDoUX2tHRPmxMMCGa:vbRJrDp3uFzUCafEDtkA9Q:1502177764655"},
-  "AI_AIR": {"device_id": "YYeqV8tpBS2zb3qcv7oCJU", "token": "6533466d-450a-4b8a-9a43-3b960b5f87c7:oxYYhd5J9kfjZ92pVywHth:YYeqV8tpBS2zb3qcv7oCJU:1501145671931"}
+  "AI_AIR": {"device_id": "YYeqV8tpBS2zb3qcv7oCJU", "token": "6533466d-450a-4b8a-9a43-3b960b5f87c7:oxYYhd5J9kfjZ92pVywHth:YYeqV8tpBS2zb3qcv7oCJU:1501145671931"},
+  "Navigation": {"device_id": "YYeqV8tpBS2zb3qcv7oCJU", "token": "9aeca8d5-2d2b-46d4-9032-02c10490c604:4yWtgDDoUX2tHRPmxMMCGa:H9Z2o68BtDPRGWMTk4cfPV:1508307820123"}
 }

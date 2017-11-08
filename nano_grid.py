@@ -42,7 +42,9 @@ device_map = {
     "jpXwNvVX4umZqkWgNsVDKj": {"name": "Switch", "port": 59446},
     "JdbL6SjeTVJC4P9bqz7CVM": {"name": "SOC", "port": 59440},
     "vbRJrDp3uFzUCafEDtkA9Q": {"name": "Flow", "port": 59438},
-    "YYeqV8tpBS2zb3qcv7oCJU": {"name": "AI_Air", "port": 59443}
+    "YYeqV8tpBS2zb3qcv7oCJU": {"name": "AI_Air", "port": 59443},
+
+    "H9Z2o68BtDPRGWMTk4cfPV": {"name": "Navigation", "port": 59449},
 }
 
 logging_config = dict(
