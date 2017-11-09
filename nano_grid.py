@@ -32,7 +32,7 @@ device_map = {
     "WyNfGzjR6dVwPM4jN9ay8n": {"name": "PEM", "port": 59439},
     "FnT5gWCUwLEoMZUFhpAfAm": {"name": "FR", "port": 59437},
     "D3eNJiXb4irfNzUofTFbJb": {"name": "HMI", "port": 59448},
-    "Uw5LrQ4VQqivpWk4ShcW8": {"name": "BatA", "port": 59435},
+    "9Uw5LrQ4VQqivpWk4ShcW8": {"name": "BatA", "port": 59435},
     "vEhjAmaEX87QbMcK8jixYn": {"name": "BatB", "port": 59436},
     "GsyVca5AXgXjfRrctDmMnH": {"name": "Load", "port": 59442},
     "JiJtiAqxXnDMVRB4T8H8vW": {"name": "PCS Test", "port": 59447},
