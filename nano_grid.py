@@ -155,10 +155,10 @@ def cmd_server():
                             if d.get('cmd') in ['Switch1Open', 'Switch1Close']:
                                 d['device_id'] = 'power_distribution_simulation'
                             logger.info(d)
-                            if all([d.get('device_id'), d.get('cmd'), d.get('para_len')]):
+                            if all([d.get('device_id'), d.get('cmd')]):
                                 message_queues.put(d)
                             else:
-                                logger.error('Invalid msg: %s', data)
+                                logger.error('Invalid msg: %s', d)
                         except ValueError as e:
                             logger.error(e)
                             tcp_poller.unregister(s)
