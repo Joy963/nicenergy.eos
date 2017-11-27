@@ -152,11 +152,9 @@ def cmd_server():
                     else:
                         try:
                             d = json.loads(data.decode('utf-8'))
-                            logger.info(d)
-
                             if d.get('cmd') in ['Switch1Open', 'Switch1Close']:
                                 d['device_id'] = 'power_distribution_simulation'
-
+                            logger.info(d)
                             if all([d.get('device_id'), d.get('cmd'), d.get('para_len')]):
                                 message_queues.put(d)
                             else:
