@@ -45,6 +45,8 @@ device_map = {
     "YYeqV8tpBS2zb3qcv7oCJU": {"name": "AI_Air", "port": 59443},
 
     "H9Z2o68BtDPRGWMTk4cfPV": {"name": "Navigation", "port": 59449},
+
+    "power_distribution_simulation": {"name": "power_distribution_simulation", "port": 58450},
 }
 
 logging_config = dict(
@@ -151,6 +153,10 @@ def cmd_server():
                         try:
                             d = json.loads(data.decode('utf-8'))
                             logger.info(d)
+
+                            if d.get('cmd') in ['Switch1Open', 'Switch2Open']:
+                                d['device_id'] = 'power_distribution_simulation'
+
                             if all([d.get('device_id'), d.get('cmd'), d.get('para_len')]):
                                 message_queues.put(d)
                             else:
