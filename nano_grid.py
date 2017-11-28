@@ -226,6 +226,10 @@ def recv_device_data():
                 data['timestamp'] = int(time.time() * 1000)
                 dev_id = data.get('dev_id')
 
+                if dev_id == 'DistCtrl1':
+                    logger.info(data)
+                    continue
+
                 try:
                     db.nano_grid_origin.insert_one(data)
                 except Exception as e:
@@ -294,9 +298,6 @@ def upload_data_to_cloud(task_id=-1):
         except Exception as e:
             logger.error(e)
             continue
-
-        if dev_id == 'DistCtrl1':
-            logger.info(msg)
 
         if log_count[dev_id] >= 10:
             log_count[dev_id] = 0
