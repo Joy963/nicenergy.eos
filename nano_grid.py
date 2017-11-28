@@ -21,7 +21,7 @@ import select
 timeout = 1000
 HOST = '192.168.1.135'
 MCAST_ADDR = '234.5.6.7'
-MCAST_PORT_LIST = list(range(59433, 59447)) + [59449]  # + [58450]
+MCAST_PORT_LIST = list(range(59433, 59447)) + [59449] + [59450]
 TCP_SERVER_PORT = 50001
 READ_ONLY = (select.POLLIN | select.POLLPRI | select.POLLHUP | select.POLLERR)
 READ_WRITE = (READ_ONLY | select.POLLOUT)
@@ -152,7 +152,6 @@ def cmd_server():
                     else:
                         try:
                             d = json.loads(data.decode('utf-8'))
-                            logger.info(d.get('cmd'))
                             if d.get("cmd") in ("DistSwitch1Open", "DistSwitch1Close"):
                                 d['device_id'] = 'power_distribution_simulation'
                             logger.info(d)
