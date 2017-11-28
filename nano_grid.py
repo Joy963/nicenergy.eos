@@ -153,6 +153,7 @@ def cmd_server():
                         try:
                             d = json.loads(data.decode('utf-8'))
                             if d.get('cmd') in ['﻿DistSwitch1Open', '﻿DistSwitch1Close']:
+                                logger.info(d.get('cmd'))
                                 d['device_id'] = 'power_distribution_simulation'
                             logger.info(d)
                             if all([d.get('device_id'), d.get('cmd')]):
