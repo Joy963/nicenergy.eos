@@ -46,7 +46,7 @@ device_map = {
 
     "H9Z2o68BtDPRGWMTk4cfPV": {"name": "Navigation", "port": 59449},
 
-    "power_distribution_simulation": {"name": "power_distribution_simulation", "port": 58450},
+    "power_distribution_simulation": {"name": "power_distribution_simulation", "port": 59450},
 }
 
 logging_config = dict(
@@ -152,7 +152,7 @@ def cmd_server():
                     else:
                         try:
                             d = json.loads(data.decode('utf-8'))
-                            if d.get('cmd') in ['Switch1Open', 'Switch1Close']:
+                            if d.get('cmd') in ['﻿DistSwitch1Open', '﻿DistSwitch1Close']:
                                 d['device_id'] = 'power_distribution_simulation'
                             logger.info(d)
                             if all([d.get('device_id'), d.get('cmd')]):
